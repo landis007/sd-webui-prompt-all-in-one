@@ -938,106 +938,45 @@ export default {
                         resolve()
                         return
                     }
-                    if (this.translateApi === 'openai') {
-                        // 使用openai翻译，先把所有需要翻译的文本改为JSON数组格式，然后一次性请求，完成后在解析数组
-                        let request = []
-                        tags.forEach((tag, index) => {
-                            request.push({"text": tag.value, "index": index})
-                        })
-                        let fromLang = toLocal ? 'en_US' : this.languageCode
-                        let toLang = toLocal ? this.languageCode : 'en_US'
-                        this.gradioAPI.translate(JSON.stringify(request), fromLang, toLang, this.translateApi, this.translateApiConfig).then(res => {
+                    let groups = {}
+                    tags.forEach((tag, index) => {
+                        let fromLang = tag.toLocal ? 'en_US' : this.languageCode
+                        let toLang = tag.toLocal ? this.languageCode : 'en_US'
+                        let groupKey = fromLang + '.' + toLang
+                        if (!groups[groupKey]) groups[groupKey] = {fromLang, toLang, tags: []}
+                        groups[groupKey].tags.push(tag)
+                    })
+                    const translateGroup = () => {
+                        let group = groups[Object.keys(groups)[0]]
+                        if (!group) {
+                            resolve()
+                            return
+                        }
+                        let texts = group.tags.map(tag => getTranslateText(tag))
+                        this.gradioAPI.translates(texts, group.fromLang, group.toLang, this.translateApi, this.translateApiConfig).then(res => {
                             if (res.success) {
                                 let translated_text = res.translated_text
-                                const start = translated_text.indexOf('[')
-                                const end = translated_text.lastIndexOf(']')
-                                translated_text = translated_text.substring(start, end + 1)
-                                try {
-                                    translated_text = JSON.parse(translated_text)
-                                    for (const index in translated_text) {
-                                        const item = translated_text[index]
-                                        let tag = tags[item.index]
-                                        item.text = item.text.replace(/\.+$/, '')
-                                        item.text = item.text.trim()
-                                        setTag(tag, item.text)
-                                    }
-                                    setLoadings(tags, false)
-                                    resolve()
-                                } catch (e) {
-                                    // 有一个错误，就代表整体都错了
-                                    setLoadings(tags, false)
-                                    this.$toastr.error(e.message)
-                                    reject(e.message)
-                                }
+                                translated_text.forEach((translateText, index) => {
+                                    let tag = group.tags[index]
+                                    if (translateText !== '') setTag(tag, translateText)
+                                    setLoading(tag, false)
+                                })
+                                delete groups[Object.keys(groups)[0]]
+                                translateGroup()
                             } else {
-                                // 有一个错误，就代表整体都错了
+                                // 有一个错误，其它的也不继续了
                                 setLoadings(tags, false)
                                 this.$toastr.error(res.message)
                                 reject(res.message)
                             }
-                        }).catch(error => {
-                            // 有一个错误，就代表整体都错了
+                        }).catch(err => {
+                            // 有一个错误，其它的也不继续了
                             setLoadings(tags, false)
-                            this.$toastr.error(error.message)
-                            reject(error.message)
+                            this.$toastr.error(err.message)
+                            reject(err.message)
                         })
-                    } else {
-                        const concurrent = this.translateApiItem.concurrent || 1 // 并发数
-                        let tagsCount = tags.length // 需要翻译的标签数
-                        let groupCount = Math.ceil(tagsCount / concurrent) // 分组数
-                        const trans = (groupNow = 0) => {
-                            if (this.cancelMultiTranslate) {
-                                // 如果取消了翻译，跳过
-                                setLoadings(tags, false)
-                                resolve()
-                                return
-                            }
-                            if (groupNow >= groupCount) {
-                                // 全部完成
-                                setLoadings(tags, false)
-                                resolve()
-                                return
-                            }
-                            const groupTags = tags.slice(groupNow * concurrent, (groupNow + 1) * concurrent)
-                            let completeCount = groupTags.length
-                            const completeFunc = () => {
-                                completeCount--
-                                if (completeCount === 0) {
-                                    // 本组全部完成
-                                    setTimeout(() => {
-                                        trans(groupNow + 1)
-                                    }, 200)
-                                }
-                            }
-                            groupTags.forEach((tag, index) => {
-                                if (this.cancelMultiTranslate) {
-                                    // 如果取消了翻译，跳过
-                                    setLoading(tag, false)
-                                    completeFunc()
-                                } else {
-                                    let fromLang = tag.toLocal ? 'en_US' : this.languageCode
-                                    let toLang = tag.toLocal ? this.languageCode : 'en_US'
-                                    this.gradioAPI.translate(tag.value, fromLang, toLang, this.translateApi, this.translateApiConfig).then(res => {
-                                        if (res.success) {
-                                            res.translated_text = res.translated_text.replace(/\.+$/, '')
-                                            res.translated_text = res.translated_text.trim()
-                                            setTag(tag, res.translated_text)
-                                        } else {
-                                            this.$toastr.error(res.message)
-                                        }
-                                        setLoading(tag, false)
-                                        completeFunc()
-                                    }).catch(error => {
-                                        // 有一个错误，其它的也不继续了
-                                        setLoadings(tags, false)
-                                        this.$toastr.error(error.message)
-                                        reject(error.message)
-                                    })
-                                }
-                            })
-                        }
-                        trans(0)
                     }
+                    translateGroup()
                 }
 
                 if (this.tagCompleteFile) {
