@@ -427,6 +427,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoKeepWeightOne: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -464,7 +468,7 @@ export default {
             default: () => [],
         },
     },
-    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt'],
+    emits: ['update:languageCode', 'update:autoTranslate', 'update:autoTranslateToEnglish', 'update:autoTranslateToLocal', 'update:autoRemoveSpace', 'update:autoRemoveLastComma', 'update:autoKeepWeightZero', 'update:autoKeepWeightOne', 'update:hideDefaultInput', 'update:hidePanel', 'update:enableTooltip', 'update:translateApi', 'click:translateApi', 'click:promptFormat', 'click:selectTheme', 'click:selectLanguage', 'click:showHistory', 'click:showFavorite', 'refreshFavorites', 'click:showChatgpt'],
     data() {
         return {
             prompt: '',
