@@ -18,16 +18,30 @@
 @common-blue: #4a54ff;
 
 .set-icon-svg(@width: 20px, @height: 20px, @fill: none, @className: icon-svg) when (@fill=none) {
+    /*.@{className} {
+        width: @width;
+        height: @height;
+    }*/
+
     .@{className} svg {
         width: @width;
-        height: @width;
+        height: @height;
+        padding: 1px;
+        box-sizing: border-box;
     }
 }
 
 .set-icon-svg(@width: 20px, @height: 20px, @fill: none, @className: icon-svg) when not (@fill=none) {
+    /*.@{className} {
+        width: @width;
+        height: @height;
+    }*/
+
     .@{className} svg {
         width: @width;
-        height: @width;
+        height: @height;
+        padding: 1px;
+        box-sizing: border-box;
 
         path {
             fill: @fill;
@@ -81,7 +95,7 @@
         background: @common-red;
     }
 
-    .set-icon-svg(24px, 24px, #000, icon-svg-close);
+    .set-icon-svg(auto, 20px, #000, icon-svg-close);
 }
 
 .common-colourful-background() {
@@ -144,7 +158,7 @@
                     box-shadow: 0 0 14px @common-blue;
                 }
 
-                .set-icon-svg(24px, 24px, none, icon-svg-loading);
+                .set-icon-svg(auto, 20px, none, icon-svg-loading);
             }
         }
     }
@@ -165,7 +179,7 @@
 
     .icon-svg {
         display: inline-block;
-        line-height: 1;
+        line-height: 0;
     }
 
     .prompt-main {
@@ -207,38 +221,38 @@
         }
 
         .prompt-unfold {
-            .set-icon-svg(20px, 20px, #02b7fd, icon-svg-unfold);
+            .set-icon-svg(auto, 20px, #02b7fd, icon-svg-unfold);
         }
 
         .extend-btn-item {
-            .set-icon-svg(18px, 18px, #d81e06, icon-svg-i18n);
-            .set-icon-svg(18px, 18px, #d81e06, icon-svg-setting);
-            .set-icon-svg(18px, 18px, #02b7fd, icon-svg-history);
-            .set-icon-svg(18px, 18px, #02b7fd, icon-svg-favorite);
-            .set-icon-svg(18px, 18px, #ad6800, icon-svg-translate);
-            .set-icon-svg(18px, 18px, #ad6800, icon-svg-english);
-            .set-icon-svg(18px, 18px, none, icon-svg-loading);
-            .set-icon-svg(18px, 18px, var(--body-text-color), icon-svg-copy);
-            .set-icon-svg(18px, 18px, #d81e06, icon-svg-remove);
-            .set-icon-svg(18px, 18px, #02b7fd, icon-svg-chatgpt);
+            .set-icon-svg(auto, 18px, #d81e06, icon-svg-i18n);
+            .set-icon-svg(auto, 18px, #d81e06, icon-svg-setting);
+            .set-icon-svg(auto, 18px, #02b7fd, icon-svg-history);
+            .set-icon-svg(auto, 18px, #02b7fd, icon-svg-favorite);
+            .set-icon-svg(auto, 18px, #ad6800, icon-svg-translate);
+            .set-icon-svg(auto, 18px, #ad6800, icon-svg-english);
+            .set-icon-svg(auto, 18px, none, icon-svg-loading);
+            .set-icon-svg(auto, 18px, var(--body-text-color), icon-svg-copy);
+            .set-icon-svg(auto, 18px, #d81e06, icon-svg-remove);
+            .set-icon-svg(auto, 18px, #02b7fd, icon-svg-chatgpt);
         }
 
         .setting-box {
-            .set-icon-svg(26px, 26px, #d81e06, icon-svg-api);
-            .set-icon-svg(26px, 26px, #d81e06, icon-svg-format);
-            .set-icon-svg(26px, 26px, #02b7fd, icon-svg-theme);
-            .set-icon-svg(26px, 26px, #ad6800, icon-svg-translate);
-            .set-icon-svg(26px, 26px, #ad6800, icon-svg-english);
-            .set-icon-svg(26px, 26px, #1f2937, icon-svg-remove-space);
-            .set-icon-svg(26px, 26px, #1f2937, icon-svg-tooltip);
+            .set-icon-svg(auto, 22px, #d81e06, icon-svg-api);
+            .set-icon-svg(auto, 22px, #d81e06, icon-svg-format);
+            .set-icon-svg(auto, 22px, #02b7fd, icon-svg-theme);
+            .set-icon-svg(auto, 22px, #ad6800, icon-svg-translate);
+            .set-icon-svg(auto, 22px, #ad6800, icon-svg-english);
+            .set-icon-svg(auto, 22px, #1f2937, icon-svg-remove-space);
+            .set-icon-svg(auto, 22px, #1f2937, icon-svg-tooltip);
         }
 
-        .set-icon-svg(26px, 26px, var(--body-text-color), icon-svg-input);
+        .set-icon-svg(auto, 22px, var(--body-text-color), icon-svg-input);
 
         .prompt-append-list {
-            .set-icon-svg(16px, 16px, #fff, icon-svg-wrap);
-            .set-icon-svg(16px, 16px, #fff, icon-svg-history);
-            .set-icon-svg(16px, 16px, #fff, icon-svg-favorite);
+            .set-icon-svg(auto, 16px, #fff, icon-svg-wrap);
+            .set-icon-svg(auto, 16px, #fff, icon-svg-history);
+            .set-icon-svg(auto, 16px, #fff, icon-svg-favorite);
         }
 
         .prompt-header-title {
@@ -389,7 +403,7 @@
                             z-index: 10;
 
                             > * {
-                                margin-left: 10px;
+                                margin-left: 5px;
 
                                 &:first-child {
                                     margin-left: 0;
@@ -464,31 +478,31 @@
         }
 
         .prompt-tag-edit {
-            .set-icon-svg(16px, 16px, #02b7fd, icon-svg-wrap);
+            .set-icon-svg(auto, 16px, #02b7fd, icon-svg-wrap);
         }
 
         .btn-tag-delete {
-            .set-icon-svg(12px, 12px, #000, icon-svg-close);
+            .set-icon-svg(auto, 10px, #000, icon-svg-close);
         }
 
         .btn-tag-extend {
-            .set-icon-svg(20px, 20px, #ff6969, icon-svg-weight-parentheses-inc);
-            .set-icon-svg(20px, 20px, #ff6969, icon-svg-weight-parentheses-dec);
-            .set-icon-svg(20px, 20px, #84ff8f, icon-svg-weight-brackets-inc);
-            .set-icon-svg(20px, 20px, #84ff8f, icon-svg-weight-brackets-dec);
-            .set-icon-svg(20px, 20px, #ff9900, icon-svg-english);
-            .set-icon-svg(20px, 20px, none, icon-svg-loading);
-            .set-icon-svg(20px, 20px, #3c3c3c, icon-svg-copy);
-            .set-icon-svg(20px, 20px, #ff472f, icon-svg-disabled);
-            .set-icon-svg(20px, 20px, #2fff53, icon-svg-enable);
-            .set-icon-svg(20px, 20px, #00eeff, icon-svg-wrap);
-            .set-icon-svg(20px, 20px, none, icon-svg-favorite-no);
-            .set-icon-svg(20px, 20px, none, icon-svg-favorite-yes);
+            .set-icon-svg(auto, 20px, #ff6969, icon-svg-weight-parentheses-inc);
+            .set-icon-svg(auto, 20px, #ff6969, icon-svg-weight-parentheses-dec);
+            .set-icon-svg(auto, 20px, #84ff8f, icon-svg-weight-brackets-inc);
+            .set-icon-svg(auto, 20px, #84ff8f, icon-svg-weight-brackets-dec);
+            .set-icon-svg(auto, 20px, #ff9900, icon-svg-english);
+            .set-icon-svg(auto, 20px, none, icon-svg-loading);
+            .set-icon-svg(auto, 20px, #3c3c3c, icon-svg-copy);
+            .set-icon-svg(auto, 20px, #ff472f, icon-svg-disabled);
+            .set-icon-svg(auto, 20px, #2fff53, icon-svg-enable);
+            .set-icon-svg(auto, 20px, #00eeff, icon-svg-wrap);
+            .set-icon-svg(auto, 20px, none, icon-svg-favorite-no);
+            .set-icon-svg(auto, 20px, none, icon-svg-favorite-yes);
         }
 
         .prompt-local-language {
-            .set-icon-svg(16px, 16px, var(--body-text-color), icon-svg-translate);
-            .set-icon-svg(16px, 16px, none, icon-svg-loading);
+            .set-icon-svg(auto, 16px, var(--body-text-color), icon-svg-translate);
+            .set-icon-svg(auto, 16px, none, icon-svg-loading);
         }
 
         .drop-select-bg {
@@ -532,12 +546,12 @@
             border-radius: 4px;
             overflow: hidden;
 
-            .set-icon-svg(20px, 20px, #c5c5c5, icon-svg-copy);
-            .set-icon-svg(20px, 20px, #ff472f, icon-svg-disabled);
-            .set-icon-svg(20px, 20px, #2fff53, icon-svg-enable);
-            .set-icon-svg(20px, 20px, none, icon-svg-favorite-no);
-            .set-icon-svg(20px, 20px, none, icon-svg-favorite-yes);
-            .set-icon-svg(20px, 20px, #ff472f, icon-svg-remove);
+            .set-icon-svg(auto, 20px, #c5c5c5, icon-svg-copy);
+            .set-icon-svg(auto, 20px, #ff472f, icon-svg-disabled);
+            .set-icon-svg(auto, 20px, #2fff53, icon-svg-enable);
+            .set-icon-svg(auto, 20px, none, icon-svg-favorite-no);
+            .set-icon-svg(auto, 20px, none, icon-svg-favorite-yes);
+            .set-icon-svg(auto, 20px, #ff472f, icon-svg-remove);
 
             .btns-title {
                 color: #fff;
@@ -1131,7 +1145,7 @@
                     //background: center center @common-blue;
                 }
 
-                .set-icon-svg(18px, 18px, #ff4a4a, icon-svg-remove);
+                .set-icon-svg(auto, 18px, #ff4a4a, icon-svg-remove);
             }
 
             .content-item {
@@ -1161,11 +1175,11 @@
                         justify-content: flex-start;
                         align-items: center;
 
-                        .set-icon-svg(14px, 14px, #ff4a4a, icon-svg-remove);
-                        .set-icon-svg(20px, 20px, none, icon-svg-favorite-yes);
-                        .set-icon-svg(20px, 20px, none, icon-svg-favorite-no);
-                        .set-icon-svg(20px, 20px, #fff, icon-svg-copy);
-                        .set-icon-svg(20px, 20px, #fff, icon-svg-use);
+                        .set-icon-svg(auto, 14px, #ff4a4a, icon-svg-remove);
+                        .set-icon-svg(auto, 20px, none, icon-svg-favorite-yes);
+                        .set-icon-svg(auto, 20px, none, icon-svg-favorite-no);
+                        .set-icon-svg(auto, 20px, #fff, icon-svg-copy);
+                        .set-icon-svg(auto, 20px, #fff, icon-svg-use);
 
                         > div {
                             margin-right: 10px;
@@ -1236,7 +1250,7 @@
             justify-content: center;
             align-items: center;
 
-            .set-icon-svg(64px, 64px, none, icon-svg-loading);
+            .set-icon-svg(auto, 64px, none, icon-svg-loading);
 
             span {
                 font-size: 22px;
@@ -1407,7 +1421,7 @@
                     border-color: #d81e06;
                 }
 
-                .set-icon-svg(20px, 20px, #d81e06, icon-svg-i18n);
+                .set-icon-svg(auto, 20px, #d81e06, icon-svg-i18n);
 
                 .icon-svg-i18n {
                     margin: 0 10px;
@@ -1465,7 +1479,7 @@
                 border-radius: 4px;
                 margin-top: 10px;
 
-                .set-icon-svg(40px, 40px, none, icon-svg-loading);
+                .set-icon-svg(auto, 40px, none, icon-svg-loading);
             }
 
             .install-result {
@@ -1613,8 +1627,8 @@
                     align-items: center;
                     border-radius: 4px;
 
-                    .set-icon-svg(20px, 20px, none, icon-svg-loading);
-                    .set-icon-svg(20px, 20px, #02b7fd, icon-svg-refresh);
+                    .set-icon-svg(auto, 20px, none, icon-svg-loading);
+                    .set-icon-svg(auto, 20px, #02b7fd, icon-svg-refresh);
                 }
 
                 .test-input {
@@ -1631,7 +1645,7 @@
                     background: #108bb5;
                     border-radius: 4px;
 
-                    .set-icon-svg(40px, 40px, none, icon-svg-loading);
+                    .set-icon-svg(auto, 40px, none, icon-svg-loading);
                 }
 
                 .translate-error {
@@ -1848,7 +1862,7 @@
                             align-items: center;
                         }
 
-                        .set-icon-svg(20px, 20px, #02b7fd, icon-svg-unfold);
+                        .set-icon-svg(auto, 20px, #02b7fd, icon-svg-unfold);
                     }
 
                     .panel-title {
@@ -1942,7 +1956,7 @@
                         .common-colourful-background();
                         border-radius: 4px;
 
-                        .set-icon-svg(30px, 30px, none, icon-svg-loading);
+                        .set-icon-svg(auto, 30px, none, icon-svg-loading);
                     }
 
                     .common-sub-btn {
@@ -1971,21 +1985,21 @@ body {
     &.dark {
         // 深色主题
         .physton-prompt .prompt-header .extend-btn-item {
-            .set-icon-svg(18px, 18px, #ff9900, icon-svg-translate);
-            .set-icon-svg(18px, 18px, #ff9900, icon-svg-english);
+            .set-icon-svg(auto, 18px, #ff9900, icon-svg-translate);
+            .set-icon-svg(auto, 18px, #ff9900, icon-svg-english);
         }
 
         .physton-prompt .prompt-header .prompt-header-extend .extend-content .extend-btn-group .extend-btn-item .setting-box {
             background: #0c0c0c;
-            .set-icon-svg(26px, 26px, #c5c5c5, icon-svg-remove-space);
-            .set-icon-svg(26px, 26px, #c5c5c5, icon-svg-tooltip);
+            .set-icon-svg(auto, 22px, #c5c5c5, icon-svg-remove-space);
+            .set-icon-svg(auto, 22px, #c5c5c5, icon-svg-tooltip);
         }
 
         .physton-prompt .prompt-tags .prompt-tags-list .prompt-tag .prompt-tag-main .btn-tag-extend {
             box-shadow: 0 0 3px #4a54ff;
             background: #0c0c0c;
 
-            .set-icon-svg(20px, 20px, #c5c5c5, icon-svg-copy);
+            .set-icon-svg(auto, 20px, #c5c5c5, icon-svg-copy);
 
             .input-number .vue-number-input__button {
                 background: #2a2a2a;
