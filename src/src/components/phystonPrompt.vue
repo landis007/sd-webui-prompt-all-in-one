@@ -369,7 +369,7 @@ import Sortable from "sortablejs"
 import common from "@/utils/common"
 
 import LanguageMixin from "@/mixins/languageMixin"
-import VueNumberInput from '@chenfengyuan/vue-number-input'
+import VueNumberInput from '@/components/vue-number-input.vue'
 import HeaderMixin from "@/mixins/phystonPrompt/headerMixin"
 import DropMixin from "@/mixins/phystonPrompt/dropMixin"
 import TagMixin from "@/mixins/phystonPrompt/tagMixin"
