@@ -360,6 +360,7 @@
                 </div>
             </div>
         </div>
+        <highlight-prompt ref="highlightPrompt" :textarea="textarea" :hide-default-input="hideDefaultInput" />
     </div>
 </template>
 
@@ -374,10 +375,12 @@ import HeaderMixin from "@/mixins/phystonPrompt/headerMixin"
 import DropMixin from "@/mixins/phystonPrompt/dropMixin"
 import TagMixin from "@/mixins/phystonPrompt/tagMixin"
 import IconSvg from "@/components/iconSvg.vue"
+import HighlightPrompt from "@/components/highlightPrompt.vue";
 
 export default {
     name: 'PhystonPrompt',
     components: {
+        HighlightPrompt,
         VueNumberInput,
         IconSvg
     },
