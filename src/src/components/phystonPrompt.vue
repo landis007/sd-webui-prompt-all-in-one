@@ -573,7 +573,7 @@ export default {
                     const localValue = find ? find.localValue : ''
                     const disabled = find ? find.disabled : false
                     const index = this._appendTag(tag, localValue, disabled, -1, 'text')
-                    if (!find) indexes.push(index)
+                    if (!find && index !== -1) indexes.push(index)
                 }
             }
             if (this.autoTranslateToLocal && event) {
